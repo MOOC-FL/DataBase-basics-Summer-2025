@@ -183,3 +183,70 @@ FROM
 WHERE
   Courses.teacher_id = Teachers.id;
 ```
+```markdown
+# Multi-Table Query Techniques
+
+## Using Table Aliases
+
+The query:
+
+```sql
+SELECT
+  Courses.name, Teachers.name
+FROM
+  Courses, Teachers
+WHERE
+  Courses.teacher_id = Teachers.id;
+```
+
+can be presented more briefly using table aliases:
+
+```sql
+SELECT
+  C.name, T.name
+FROM
+  Courses AS C, Teachers AS T
+WHERE
+  C.teacher_id = T.id;
+```
+
+The word `AS` is not required, so we can shorten the query further:
+
+```sql
+SELECT
+  C.name, T.name
+FROM
+  Courses C, Teachers T
+WHERE
+  C.teacher_id = T.id;
+```
+
+## Repeating the Same Table
+
+A multi-table query can also have the same table appear multiple times, as long as the repeated tables are given different aliases. For example, the following query finds all ways to select a pair of two teachers:
+
+```sql
+SELECT A.name, B.name FROM Teachers A, Teachers B;
+```
+
+The result of the query is as follows:
+
+| name       | name       |
+|------------|------------|
+| Kaila      | Kaila      |
+| Kaila      | Luukkainen |
+| Kaila      | Kivinen    |
+| Kaila      | Laaksonen  |
+| Luukkainen | Kaila      |
+| Luukkainen | Luukkainen |
+| Luukkainen | Kivinen    |
+| Luukkainen | Laaksonen  |
+| Kivinen    | Kaila      |
+| Kivinen    | Luukkainen |
+| Kivinen    | Kivinen    |
+| Kivinen    | Laaksonen  |
+| Laaksonen  | Kaila      |
+| Laaksonen  | Luukkainen |
+| Laaksonen  | Kivinen    |
+| Laaksonen  | Laaksonen  |
+```
