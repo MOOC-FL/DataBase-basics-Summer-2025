@@ -1,4 +1,4 @@
-```markdown
+
 # Junction Tables
 
 ## Types of Relationships Between Tables
